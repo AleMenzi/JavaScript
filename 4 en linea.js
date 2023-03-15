@@ -98,7 +98,6 @@ function reiniciarBtn(){
         document.querySelectorAll('button').forEach((press, i) => {press.style.backgroundColor = "white"; press.style.backgroundColor = "" })
     }
     console.log("Su juego ha sido reiniciado");
-    
 }
 
 
