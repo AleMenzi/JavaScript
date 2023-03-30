@@ -10,13 +10,14 @@ function saludar (){
     pedirNombre();
 }
 
+
 let Jug1 = {
     nombre: "",
-    color: "Green",
+    color: "lightgreen",
 }
 let Jug2 = {
     nombre: "",
-    color: "Blue",
+    color: "Red",
     }
 
 function pedirNombre (){
@@ -38,6 +39,7 @@ saludar();
 console.log(Jug1.nombre + " sos el jugador Verde");
 console.log(Jug2.nombre + " sos el jugador Azul");
 
+// || boton.style.backgroundColor == "white"
 let turno = 0;
 let tablero = [];
 let juegoFinalizado = false;
@@ -52,8 +54,8 @@ const presionarBoton = (press, pos) =>{
         tablero[pos] = color;
     }
     if (ustedGano() && !juegoFinalizado){
-        alert("Felicitaciones " + (color == 'Green'? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida")
-        console.log("Felicitaciones " + (color == 'Green'? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida");
+        alert("Felicitaciones " + (color == Jug1.nombre ? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida")
+        console.log("Felicitaciones " + (color == Jug1.nombre? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida");
         juegoFinalizado = true;
     }
 }
@@ -106,6 +108,7 @@ function reiniciarBtn(){
         reinicioJuego = true
         tablero = [];
         document.querySelectorAll('button').forEach((press, i) => {press.style.backgroundColor = "white"; press.style.backgroundColor = "" })
+        ustedGano();
     }
     console.log("Su juego ha sido reiniciado");
 }
