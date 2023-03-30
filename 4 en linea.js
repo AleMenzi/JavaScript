@@ -10,7 +10,6 @@ function saludar (){
     pedirNombre();
 }
 
-
 let Jug1 = {
     nombre: "",
     color: "Green",
@@ -19,8 +18,6 @@ let Jug2 = {
     nombre: "",
     color: "Blue",
     }
-
-
 
 function pedirNombre (){
     while(!nombresCompletos){
@@ -41,7 +38,6 @@ saludar();
 console.log(Jug1.nombre + " sos el jugador Verde");
 console.log(Jug2.nombre + " sos el jugador Azul");
 
-// || boton.style.backgroundColor == "white"
 let turno = 0;
 let tablero = [];
 let juegoFinalizado = false;
