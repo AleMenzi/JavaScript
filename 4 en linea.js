@@ -1,5 +1,3 @@
-let nombreJug1 = "";
-let nombreJug2 = "";
 let nombresCompletos = false;
 let nombreJug1Completo = false;
 let reinicioJuego = false;
@@ -12,40 +10,55 @@ function saludar (){
     pedirNombre();
 }
 
+
+let Jug1 = {
+    nombre: "",
+    color: "Green",
+}
+let Jug2 = {
+    nombre: "",
+    color: "Blue",
+    }
+
+
+
 function pedirNombre (){
     while(!nombresCompletos){
-        if (nombreJug1 != "" ){
+        if (Jug1.nombre != "" ){
             nombreJug1Completo = true
-            nombreJug2 = prompt("Ingrese nombre del segundo jugador")
-            if(nombreJug2 != "" && nombreJug1Completo == true){
-                alert("Bienvenidos jugadores " + nombreJug1 + " y " + nombreJug2 + " se les asignaron sus colores:\n" + nombreJug1 +  " = Verde\n" + nombreJug2 + " = Azul")
+            Jug2.nombre = prompt("Ingrese nombre del segundo jugador")
+            if(Jug2.nombre != "" && nombreJug1Completo == true){
+                alert("Bienvenidos jugadores " + Jug1.nombre + " y " + Jug2.nombre + " se les asignaron sus colores:\n" + Jug1.nombre +  " = Verde\n" + Jug2.nombre + " = Azul")
                 nombresCompletos = true 
             }
         } else {
-            nombreJug1 = prompt("Ingrese nombre del primer jugador")
+            Jug1.nombre = prompt("Ingrese nombre del primer jugador")
         }
     }
 }
 saludar();
 
-console.log(nombreJug1 + " sos el jugador Verde");
-console.log(nombreJug2 + " sos el jugador Azul");
+console.log(Jug1.nombre + " sos el jugador Verde");
+console.log(Jug2.nombre + " sos el jugador Azul");
 
 // || boton.style.backgroundColor == "white"
 let turno = 0;
-const tablero = [];
+let tablero = [];
+let juegoFinalizado = false;
+
 const presionarBoton = (press, pos) =>{
     const boton = press.target;
     let color = ""
     if(boton.style.backgroundColor == ""){
         turno ++;
-        color = turno % 2 ? 'Green' : 'Blue'
+        color = turno % 2 ? Jug1.color : Jug2.color
         boton.style.backgroundColor = color;
         tablero[pos] = color;
     }
-    if (ustedGano()){
-        alert("Felicitaciones " + (color == 'Green'? nombreJug1:nombreJug2) + " usted es el ganador de esta partida")
-        console.log("Felicitaciones " + (color == 'Green'? nombreJug1:nombreJug2) + " usted es el ganador de esta partida");
+    if (ustedGano() && !juegoFinalizado){
+        alert("Felicitaciones " + (color == 'Green'? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida")
+        console.log("Felicitaciones " + (color == 'Green'? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida");
+        juegoFinalizado = true;
     }
 }
 
@@ -77,7 +90,7 @@ const ustedGano = () => {
     } else if(tablero[3] == tablero[8] && tablero[3] == tablero[13] && tablero [3] == tablero[18] && tablero[3]){
         return true;
     }  else if(tablero[4] == tablero[9] && tablero[4] == tablero[14] && tablero [4] == tablero[19] && tablero[4]){
-    return true;
+        return true;
     //Diagonales
     } else if(tablero[0] == tablero[6] && tablero[0] == tablero[12] && tablero [0] == tablero[18] && tablero[0]){
         return true;
@@ -86,7 +99,7 @@ const ustedGano = () => {
     } else if(tablero[3] == tablero[7] && tablero[3] == tablero[11] && tablero [3] == tablero[15] && tablero[3]){
         return true;
     }  else if(tablero[4] == tablero[8] && tablero[4] == tablero[12] && tablero [4] == tablero[16] && tablero[4])
-    return true;
+        return true;
 }
 
 document.querySelectorAll('button').forEach((obj, i) => obj.addEventListener('click', (press) => presionarBoton(press, i)));
@@ -95,10 +108,15 @@ function reiniciarBtn(){
     reinicio = prompt("Seguro que quiere reiniciar el juego? S/N")
     if (reinicio == "S" || reinicio == "s"){
         reinicioJuego = true
+        tablero = [];
         document.querySelectorAll('button').forEach((press, i) => {press.style.backgroundColor = "white"; press.style.backgroundColor = "" })
     }
     console.log("Su juego ha sido reiniciado");
 }
+
+
+
+
 
 
 
