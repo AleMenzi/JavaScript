@@ -8,8 +8,16 @@
     <title>4 en linea</title>
 </head>
 <body>
-    <h1>4 en linea</h1>
+    <h1 id="titulo">Este es un título</h1>
     <h2>Junta las 4 fichas del mismo color, y gana el juego</h2>
+
+    <form onsubmit="empezarJuego()">
+        <label for="player1">Jugador 1:</label>
+        <input type="text" id="player1" name="player1"><br>
+        <label for="player2">Jugador 2:</label>
+        <input type="text" id="player2" name="player2"><br>
+        <input type="submit" value="Empezar juego">
+    </form>
 
     <div class="container">
         <button></button>
@@ -37,14 +45,6 @@
     <div class = "reiniciar">
         <map type = "button" id = "reinicio" onClick="reiniciarBtn()"> Reiniciar </map>
     </div>
-
-    <div class = "comprarMonedas">
-        <map type = "button" id = "comprarMonedas" onClick="monedasBtn()"> Botón en reparación </map>
-    </div> 
-
-    <audio>
-        <source src="./Audio/Musica de fondo.mp3" type="audio/mp3">
-    </audio>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./4 en linea.js"></script>

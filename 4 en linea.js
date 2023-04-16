@@ -1,45 +1,47 @@
+
 let nombresCompletos = false;
 let nombreJug1Completo = false;
 let reinicioJuego = false;
 let reinicio = "";
 
+const titulo = document.getElementById("titulo");
+titulo.innerText = "4 en linea";
 
-function saludar (){
-    alert("Bienvenido a 4 en linea. Se necesitan 2 jugadores para poder jugar")
-    console.log("Bienvenido a 4 en linea.");
-    pedirNombre();
-}
 
 
 let Jug1 = {
-    nombre: "",
+    nombre: document.getElementById("player1"),
     color: "lightgreen",
 }
 let Jug2 = {
-    nombre: "",
+    nombre: document.getElementById("player2"),
     color: "Red",
+
     }
 
-function pedirNombre (){
-    while(!nombresCompletos){
-        if (Jug1.nombre != "" ){
-            nombreJug1Completo = true
-            Jug2.nombre = prompt("Ingrese nombre del segundo jugador")
-            if(Jug2.nombre != "" && nombreJug1Completo == true){
-                alert("Bienvenidos jugadores " + Jug1.nombre + " y " + Jug2.nombre + " se les asignaron sus colores:\n" + Jug1.nombre +  " = Verde\n" + Jug2.nombre + " = Azul")
-                nombresCompletos = true 
-            }
-        } else {
-            Jug1.nombre = prompt("Ingrese nombre del primer jugador")
-        }
-    }
+// Local Storage - Jugadores
+localStorage.setItem("Jugador 1",JSON.stringify(Jug1));
+let primerJugador = JSON.parse(localStorage.getItem("Jugador 1"));
+
+localStorage.setItem("Jugador 2",JSON.stringify(Jug2));
+let segundoJugador = JSON.parse(localStorage.getItem("Jugador 2"));
+
+// Session Storage - Jugadores
+sessionStorage.setItem('Jugador 1', "Ale")
+sessionStorage.setItem('Jugador 2', "Pepe")
+
+function empezarJuego() {
+    
+    let player1 = document.getElementById('player1').value;
+    let player2 = document.getElementById('player2').value;
+    
+    document.getElementById('player1Name').innerHTML = player1;
+    document.getElementById('player2Name').innerHTML = player2;
+    console.log(player1);
+    presionarBoton();
+    return false;
 }
-saludar();
 
-console.log(Jug1.nombre + " sos el jugador Verde");
-console.log(Jug2.nombre + " sos el jugador Azul");
-
-// || boton.style.backgroundColor == "white"
 let turno = 0;
 let tablero = [];
 let juegoFinalizado = false;
@@ -54,8 +56,6 @@ const presionarBoton = (press, pos) =>{
         tablero[pos] = color;
     }
     if (ustedGano() && !juegoFinalizado){
-        alert("Felicitaciones " + (color == Jug1.nombre ? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida")
-        console.log("Felicitaciones " + (color == Jug1.nombre? Jug1.nombre:Jug2.nombre) + " usted es el ganador de esta partida");
         juegoFinalizado = true;
     }
 }
@@ -110,12 +110,7 @@ function reiniciarBtn(){
         document.querySelectorAll('button').forEach((press, i) => {press.style.backgroundColor = "white"; press.style.backgroundColor = "" })
         ustedGano();
     }
-    console.log("Su juego ha sido reiniciado");
 }
-
-
-
-
 
 
 
